@@ -65,9 +65,11 @@ table {
 body {
   background-color: ${(props) => props.theme.bgColor.normal};
   color: ${(props) => props.theme.textColor.normal};
+  height: 500vh;
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 `;
 
