@@ -3,7 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { darkTheme } from "./my-theme";
 
 const rootElement = document.getElementById("root")!;
 const root = ReactDOM.createRoot(rootElement);
@@ -58,13 +59,25 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: ${(props) => props.theme.bgColor.normal};
+  color: ${(props) => props.theme.textColor.normal};
+}
+a {
+  text-decoration: none;
+}
 `;
 
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={client}>
-      <RouterProvider router={router} />
-      <GlobalStyle />
+      <ThemeProvider theme={darkTheme}>
+        <RouterProvider router={router} />
+        <GlobalStyle />
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
