@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { IAPIResponse, makeImagePath } from "../api";
+import { useState } from "react";
 
+// styled components
 const MovieWrapper = styled(motion.ul)`
   padding-top: calc(10vh + 65px);
   display: grid;
@@ -38,6 +40,28 @@ const Title = styled.h3`
   text-align: center;
 `;
 
+const Overlay = styled(motion.div)`
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+`;
+
+const DetailModal = styled(motion.div)`
+  width: 60vw;
+  height: 80vh;
+  position: fixed;
+  top: 15vh;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: aqua;
+`;
+
 // variants
 const moviesVariants = {
   hidden: {
@@ -68,24 +92,65 @@ const posterVariants = {
   },
 };
 
+const overlayVariants = {
+  exit: {
+    opacity: 0,
+  },
+  normal: {
+    opacity: 1,
+  },
+};
+
 interface IMovies {
   movieData: IAPIResponse;
 }
 
+// 추후에 Enum 혹은 상수에 빼놓기
+const UNSELECTED_STATE = -1;
+
 function Movies({ movieData }: IMovies) {
+  const [movieId, setMovieId] = useState(UNSELECTED_STATE);
+
+  const onMovieClick = (movieId: number) => setMovieId(movieId);
+  const onOverlayClick = () => setMovieId(UNSELECTED_STATE);
+
   return (
-    <MovieWrapper variants={moviesVariants} initial="hidden" animate="visible">
-      {movieData?.results.map((movie) => (
-        <Movie key={movie.id} variants={movieItemVariants}>
-          <Img
-            src={makeImagePath(movie.poster_path)}
-            variants={posterVariants}
-            whileHover="hover"
-          />
-          <Title>{movie.title}</Title>
-        </Movie>
-      ))}
-    </MovieWrapper>
+    <>
+      <MovieWrapper
+        variants={moviesVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {movieData?.results.map((movie) => (
+          <Movie
+            onClick={() => onMovieClick(movie.id)}
+            key={movie.id}
+            variants={movieItemVariants}
+            layoutId={`movie-detail-${movie.id}`}
+          >
+            <Img
+              src={makeImagePath(movie.poster_path)}
+              variants={posterVariants}
+              whileHover="hover"
+            />
+            <Title>{movie.title}</Title>
+          </Movie>
+        ))}
+      </MovieWrapper>
+      <AnimatePresence>
+        {movieId !== UNSELECTED_STATE && (
+          <>
+            <Overlay
+              onClick={onOverlayClick}
+              variants={overlayVariants}
+              animate="normal"
+              exit="exit"
+            />
+            <DetailModal layoutId={`movie-detail-${movieId}`} />
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
