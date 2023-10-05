@@ -6,4 +6,6 @@ export const Wrapper = styled.main`
   margin: 35px auto 0 auto;
 `;
 
-export const Loader = styled.div``;
+export const Loader = styled.div`
+  padding: 10vh;
+`;
