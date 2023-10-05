@@ -1,7 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import { IAPIResponse, makeImagePath } from "../api";
+import { useQuery } from "@tanstack/react-query";
+import { IAPIResponse, IMovieDetail, getMovie, makeImagePath } from "../api";
 import { useState } from "react";
+import { Loader } from "./common-components";
 
 // styled components
 const MovieWrapper = styled(motion.ul)`
@@ -62,6 +64,21 @@ const DetailModal = styled(motion.div)`
   background-color: aqua;
 `;
 
+const BgImgWrapper = styled.div``;
+
+const BgImg = styled.img``;
+
+const DetailInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const DetailTitle = styled.h3``;
+
+const DetailOverview = styled.p``;
+
+const DetailInfoItem = styled.span``;
+
 // variants
 const moviesVariants = {
   hidden: {
@@ -110,6 +127,12 @@ const UNSELECTED_STATE = -1;
 
 function Movies({ movieData }: IMoviesProps) {
   const [movieId, setMovieId] = useState(UNSELECTED_STATE);
+  const { isLoading: detailIsLoading, data: movieDetail } =
+    useQuery<IMovieDetail>({
+      queryKey: ["getMovie", movieId],
+      queryFn: () => getMovie(movieId + ""),
+      enabled: movieId !== UNSELECTED_STATE,
+    });
 
   const onMovieClick = (movieId: number) => setMovieId(movieId);
   const onOverlayClick = () => setMovieId(UNSELECTED_STATE);
@@ -146,7 +169,36 @@ function Movies({ movieData }: IMoviesProps) {
               animate="normal"
               exit="exit"
             />
-            <DetailModal layoutId={`movie-detail-${movieId}`} />
+            <DetailModal layoutId={`movie-detail-${movieId}`}>
+              {detailIsLoading ? (
+                <Loader>Loading...</Loader>
+              ) : (
+                <>
+                  <BgImgWrapper>
+                    <BgImg />
+                  </BgImgWrapper>
+                  <DetailInfoWrapper>
+                    <DetailTitle>{movieDetail?.title}</DetailTitle>
+                    <DetailOverview>{movieDetail?.overview}</DetailOverview>
+                    <DetailInfoItem>
+                      Budget: {movieDetail?.budget}
+                    </DetailInfoItem>
+                    <DetailInfoItem>
+                      Revenue: {movieDetail?.revenue}
+                    </DetailInfoItem>
+                    <DetailInfoItem>
+                      Runtime: {movieDetail?.runtime}
+                    </DetailInfoItem>
+                    <DetailInfoItem>
+                      Rating: {movieDetail?.vote_average}
+                    </DetailInfoItem>
+                    <DetailInfoItem>
+                      Homepage: {movieDetail?.homepage}
+                    </DetailInfoItem>
+                  </DetailInfoWrapper>
+                </>
+              )}
+            </DetailModal>
           </>
         )}
       </AnimatePresence>
