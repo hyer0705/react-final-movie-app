@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
@@ -6,7 +7,7 @@ import { IAPIResponse, getPopular, makeImagePath } from "../api";
 
 const Loader = styled.div``;
 
-const Movies = styled.section`
+const Movies = styled(motion.ul)`
   padding-top: calc(10vh + 65px);
   display: grid;
   gap: 5px;
@@ -19,7 +20,7 @@ const Movies = styled.section`
   }
 `;
 
-const Movie = styled.div`
+const Movie = styled(motion.li)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,13 +41,34 @@ const Title = styled.h3`
   text-align: center;
 `;
 
+// variants
+const moviesVariants = {
+  hidden: {
+    opacity: 1,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const movieItemVariants = {
+  hidden: {
+    scale: 0,
+  },
+  visible: {
+    scale: 1,
+  },
+};
+
 function Home() {
   const { data: popularList, isLoading } = useQuery<IAPIResponse>({
     queryKey: ["getPopular"],
     queryFn: getPopular,
   });
-
-  console.log(popularList);
 
   return (
     <Wrapper>
@@ -54,9 +76,9 @@ function Home() {
       {isLoading ? (
         <Loader>Loading...</Loader>
       ) : (
-        <Movies>
+        <Movies variants={moviesVariants} initial="hidden" animate="visible">
           {popularList?.results.map((movie) => (
-            <Movie>
+            <Movie key={movie.id} variants={movieItemVariants}>
               <Img src={makeImagePath(movie.poster_path)} />
               <Title>{movie.title}</Title>
             </Movie>
