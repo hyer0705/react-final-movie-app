@@ -25,13 +25,15 @@ const Movie = styled(motion.li)`
   flex-direction: column;
   align-items: center;
   margin-bottom: 60px;
+  cursor: pointer;
 `;
 
-const Img = styled.img`
+const Img = styled(motion.img)`
   width: 200px;
   height: 300px;
   border-radius: 15px;
   margin-bottom: 20px;
+  transform-origin: center bottom;
 `;
 
 const Title = styled.h3`
@@ -49,8 +51,8 @@ const moviesVariants = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.4,
-      staggerChildren: 0.3,
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -61,6 +63,13 @@ const movieItemVariants = {
   },
   visible: {
     scale: 1,
+  },
+};
+
+const posterVariants = {
+  hover: {
+    scale: 1.1,
+    transition: { duration: 0.3, type: "spring", bounce: 0.3 },
   },
 };
 
@@ -79,7 +88,11 @@ function Home() {
         <Movies variants={moviesVariants} initial="hidden" animate="visible">
           {popularList?.results.map((movie) => (
             <Movie key={movie.id} variants={movieItemVariants}>
-              <Img src={makeImagePath(movie.poster_path)} />
+              <Img
+                src={makeImagePath(movie.poster_path)}
+                variants={posterVariants}
+                whileHover="hover"
+              />
               <Title>{movie.title}</Title>
             </Movie>
           ))}
