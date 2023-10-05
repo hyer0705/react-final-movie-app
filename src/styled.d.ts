@@ -7,6 +7,7 @@ declare module "styled-components" {
       modal: string;
       normal: string;
       circle: string;
+      button: string;
     };
     textColor: {
       accent: string;
