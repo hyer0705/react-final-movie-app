@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 
 const Nav = styled.nav`
   position: fixed;
-  top: 80px;
+  top: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 80px;
+  height: 10vh;
 `;
 
 const Menus = styled.ul`
-  width: 80%;
+  width: 720px;
   display: flex;
   justify-content: space-around;
 `;
@@ -36,14 +36,13 @@ const Circle = styled(motion.span)`
   left: 0;
   right: 0;
   margin: 0 auto;
-  bottom: -10px;
+  bottom: 10px;
 `;
 
 function Header() {
   const homeMatch = useMatch("/");
   const comingSoonMatch = useMatch("/coming-soon");
   const nowPlayingMatch = useMatch("/now-playing");
-  console.group(homeMatch, comingSoonMatch, nowPlayingMatch);
 
   return (
     <Nav>
