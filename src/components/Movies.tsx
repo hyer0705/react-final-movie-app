@@ -101,14 +101,14 @@ const overlayVariants = {
   },
 };
 
-interface IMovies {
+interface IMoviesProps {
   movieData: IAPIResponse;
 }
 
 // 추후에 Enum 혹은 상수에 빼놓기
 const UNSELECTED_STATE = -1;
 
-function Movies({ movieData }: IMovies) {
+function Movies({ movieData }: IMoviesProps) {
   const [movieId, setMovieId] = useState(UNSELECTED_STATE);
 
   const onMovieClick = (movieId: number) => setMovieId(movieId);
