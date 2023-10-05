@@ -5,3 +5,5 @@ export const Wrapper = styled.main`
   max-width: 720px;
   margin: 35px auto 0 auto;
 `;
+
+export const Loader = styled.div``;

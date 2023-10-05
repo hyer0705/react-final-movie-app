@@ -1,11 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
-import { Wrapper } from "../components/common-components";
+import { Loader, Wrapper } from "../components/common-components";
+import { getNowPlaying } from "../api";
+import Movies from "../components/Movies";
 
 function NowPlaying() {
+  const { data: nowPlayingData, isLoading } = useQuery({
+    queryKey: ["getNowPlaying"],
+    queryFn: getNowPlaying,
+  });
+
   return (
     <Wrapper>
       <Header />
-      <h1>NowPlaying Component</h1>
+      {isLoading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <>{nowPlayingData ? <Movies movieData={nowPlayingData} /> : null}</>
+      )}
     </Wrapper>
   );
 }
