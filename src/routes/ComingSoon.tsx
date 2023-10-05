@@ -1,11 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
-import { Wrapper } from "../components/common-components";
+import { Loader, Wrapper } from "../components/common-components";
+import { getComingSoon } from "../api";
+import Movies from "../components/Movies";
 
 function ComingSoon() {
+  const { data: comingSoonData, isLoading } = useQuery({
+    queryKey: ["getComingSoon"],
+    queryFn: getComingSoon,
+  });
+
   return (
     <Wrapper>
       <Header />
-      <h1>ComingSoon Component</h1>
+      {isLoading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <>{comingSoonData ? <Movies movieData={comingSoonData} /> : null}</>
+      )}
     </Wrapper>
   );
 }
