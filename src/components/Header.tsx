@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 
 const Nav = styled.nav`
   position: fixed;
+  top: 80px;
+  left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
