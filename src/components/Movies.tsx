@@ -86,8 +86,6 @@ const BgCover = styled.div<{ $imgPath: string }>`
   height: 300px;
 `;
 
-const BgImg = styled.img``;
-
 const DetailInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
