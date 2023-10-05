@@ -5,6 +5,7 @@ const darkTheme: DefaultTheme = {
     modal: "#171617",
     normal: "#0D0B0D",
     circle: "#EF5A49",
+    button: "#DAD0CB",
   },
   textColor: {
     accent: "#EAE9EA",
