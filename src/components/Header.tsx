@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link, useMatch } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
-const Nav = styled.nav`
+const Nav = styled(motion.nav)`
   position: fixed;
   top: 0;
   left: 0;
@@ -39,13 +40,35 @@ const Circle = styled(motion.span)`
   bottom: 10px;
 `;
 
+const navVariants = {
+  top: {
+    backgroundColor: "rgba(13, 11, 13, 0)",
+  },
+  scroll: {
+    backgroundColor: "rgba(13, 11, 13, 1)",
+  },
+};
+
 function Header() {
   const homeMatch = useMatch("/");
   const comingSoonMatch = useMatch("/coming-soon");
   const nowPlayingMatch = useMatch("/now-playing");
 
+  const { scrollY } = useScroll();
+  const navAnimation = useAnimation();
+
+  useEffect(() => {
+    scrollY.on("change", (latest) => {
+      if (scrollY.get() > 80) {
+        navAnimation.start("scroll");
+      } else {
+        navAnimation.start("top");
+      }
+    });
+  }, [scrollY, navAnimation]);
+
   return (
-    <Nav>
+    <Nav variants={navVariants} animate={navAnimation} initial="top">
       <Menus>
         <Menu>
           <Link to="/">
