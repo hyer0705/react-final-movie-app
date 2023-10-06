@@ -9,7 +9,6 @@ import {
   makeImagePath,
 } from "../api";
 import { useState } from "react";
-import { Loader } from "../common/common-components";
 import Detail from "./Detail";
 import { UNSELECTED_STATE } from "../common/constants";
 
