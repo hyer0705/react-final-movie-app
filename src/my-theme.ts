@@ -2,15 +2,28 @@ import { DefaultTheme } from "styled-components";
 
 const darkTheme: DefaultTheme = {
   bgColor: {
-    modal: "#171617",
-    normal: "#0D0B0D",
-    circle: "#EF5A49",
-    button: "#DAD0CB",
+    modal: "#262235",
+    normal: "#1C1727",
+    circle: "#C90659",
+    button: "#8668ef",
   },
   textColor: {
-    accent: "#EAE9EA",
-    normal: "#CBCACB",
+    accent: "#CCCBD2",
+    normal: "#FEFEFE",
   },
 };
 
-export { darkTheme };
+const lightTheme: DefaultTheme = {
+  bgColor: {
+    modal: "#FCFAFE", // 해당 컬러는 좀 더 생각해보기로
+    normal: "#FFFFFF",
+    circle: "#CE085B",
+    button: "#7f42f1",
+  },
+  textColor: {
+    accent: "#535353",
+    normal: "#262626",
+  },
+};
+
+export { darkTheme, lightTheme };
