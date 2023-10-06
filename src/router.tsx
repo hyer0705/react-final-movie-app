@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "./routes/Home";
 import NowPlaying from "./routes/NowPlaying";
 import ComingSoon from "./routes/ComingSoon";
+import NotFound from "./components/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -22,5 +23,6 @@ export const router = createBrowserRouter([
         element: <NowPlaying />,
       },
     ],
+    errorElement: <NotFound />,
   },
 ]);
