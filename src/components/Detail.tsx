@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { IMovieDetail, getMovie, makeBgPath } from "../api";
 import { UNSELECTED_STATE } from "../common/constants";
-import { Loader } from "../common/common-components";
+import { LoaderWrapper, LoadingSpinner } from "../common/common-components";
 
 const DetailModal = styled(motion.div)`
   width: 70vh;
@@ -114,7 +114,9 @@ function Detail({ movieId, setMovieId }: IDetailProps) {
       />
       <DetailModal layoutId={`movie-detail-${movieId}`}>
         {detailIsLoading ? (
-          <Loader>Loading...</Loader>
+          <LoaderWrapper>
+            <LoadingSpinner />
+          </LoaderWrapper>
         ) : (
           movieDetail && (
             <>
