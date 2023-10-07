@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Link, useMatch } from "react-router-dom";
 import { motion, useScroll, useAnimation } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { IsDarkThemeContext } from "../context";
 
 const Nav = styled(motion.nav)`
   position: fixed;
@@ -81,7 +82,11 @@ const navVariants = {
   },
 };
 
-function Header() {
+interface IHeaderProps {
+  setIsDarkTheme: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Header({ setIsDarkTheme }: IHeaderProps) {
   const homeMatch = useMatch("/");
   const comingSoonMatch = useMatch("/coming-soon");
   const nowPlayingMatch = useMatch("/now-playing");
@@ -89,9 +94,8 @@ function Header() {
   const { scrollY } = useScroll();
   const navAnimation = useAnimation();
 
-  const [isDark, setIsDark] = useState(true);
-  const onThemeBtn = () => setIsDark((prev) => !prev);
-  console.log(isDark);
+  const isDark = useContext(IsDarkThemeContext);
+  const onThemeBtn = () => setIsDarkTheme((prev) => !prev);
 
   useEffect(() => {
     scrollY.on("change", (latest) => {

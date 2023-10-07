@@ -13,7 +13,7 @@ function ComingSoon() {
 
   return (
     <Wrapper>
-      {1 > 0 ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <>{comingSoonData ? <Movies movieData={comingSoonData} /> : null}</>
