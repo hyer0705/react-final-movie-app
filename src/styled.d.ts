@@ -13,5 +13,6 @@ declare module "styled-components" {
       accent: string;
       normal: string;
     };
+    loadingColor: string;
   }
 }

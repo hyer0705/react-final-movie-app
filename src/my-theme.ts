@@ -11,6 +11,7 @@ const darkTheme: DefaultTheme = {
     accent: "#CCCBD2",
     normal: "#FEFEFE",
   },
+  loadingColor: "#fff", // 추후 변경 필요
 };
 
 const lightTheme: DefaultTheme = {
@@ -24,6 +25,7 @@ const lightTheme: DefaultTheme = {
     accent: "#535353",
     normal: "#262626",
   },
+  loadingColor: "#000",
 };
 
 export { darkTheme, lightTheme };
