@@ -1,12 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import Header from "../components/Header";
-import {
-  LoaderWrapper,
-  LoadingSpinner,
-  Wrapper,
-} from "../common/common-components";
+import { Wrapper } from "../common/common-components";
 import { IAPIResponse, getPopular } from "../api";
 import Movies from "../components/Movies";
+import Loader from "../components/Loader";
 
 function Home() {
   const { data: popularData, isLoading } = useQuery<IAPIResponse>({
@@ -16,11 +12,8 @@ function Home() {
 
   return (
     <Wrapper>
-      <Header />
       {isLoading ? (
-        <LoaderWrapper>
-          <LoadingSpinner />
-        </LoaderWrapper>
+        <Loader />
       ) : (
         <>{popularData ? <Movies movieData={popularData} /> : null}</>
       )}
