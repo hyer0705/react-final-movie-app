@@ -1,13 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import { useQuery } from "@tanstack/react-query";
-import {
-  IAPIResponse,
-  IMovieDetail,
-  getMovie,
-  makeBgPath,
-  makeImagePath,
-} from "../api";
+import { IAPIResponse, makeImagePath } from "../api";
 import { useState } from "react";
 import Detail from "./Detail";
 import { UNSELECTED_STATE } from "../common/constants";

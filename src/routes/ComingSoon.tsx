@@ -1,12 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
-import {
-  LoaderWrapper,
-  LoadingSpinner,
-  Wrapper,
-} from "../common/common-components";
+import { Wrapper } from "../common/common-components";
 import { getComingSoon } from "../api";
 import Movies from "../components/Movies";
+import Loader from "../components/Loader";
 
 function ComingSoon() {
   const { data: comingSoonData, isLoading } = useQuery({
@@ -16,11 +13,8 @@ function ComingSoon() {
 
   return (
     <Wrapper>
-      <Header />
       {isLoading ? (
-        <LoaderWrapper>
-          <LoadingSpinner />
-        </LoaderWrapper>
+        <Loader />
       ) : (
         <>{comingSoonData ? <Movies movieData={comingSoonData} /> : null}</>
       )}

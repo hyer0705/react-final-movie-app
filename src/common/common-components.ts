@@ -23,7 +23,7 @@ export const LoadingSpinner = styled.span`
   height: 48px;
   border-radius: 50%;
   display: inline-block;
-  border-top: 3px solid ${(props) => props.theme.bgColor.normal};
+  border-top: 3px solid ${(props) => props.theme.loadingColor};
   border-right: 3px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
