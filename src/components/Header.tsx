@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link, useMatch } from "react-router-dom";
-import { motion, useScroll, useAnimation } from "framer-motion";
-import { useContext, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useContext } from "react";
 import { IsDarkThemeContext } from "../context";
 
 const Nav = styled(motion.nav)`
@@ -12,6 +12,7 @@ const Nav = styled(motion.nav)`
   display: flex;
   justify-content: center;
   height: 10vh;
+  background-color: ${(props) => props.theme.bgColor.normal};
 `;
 
 const Menus = styled.ul`
@@ -42,10 +43,9 @@ const Circle = styled(motion.span)`
 `;
 
 const ThemeBtnWrapper = styled(motion.div)`
-  width: 70px;
+  width: 35px;
   height: 35px;
   padding: 5px;
-  background-color: ${(props) => props.theme.bgColor.modal};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,21 +66,13 @@ const ThemeBtn = styled(motion.div)<{ $isDark: boolean }>`
   align-items: center;
   justify-content: ${(props) => (props.$isDark ? "end" : "start")};
   padding: 5px;
+  color: ${(props) => props.theme.textColor.lighter};
 `;
 
 const IconSvg = styled(motion.svg)`
   width: 18px;
   height: 18px;
 `;
-
-const navVariants = {
-  top: {
-    backgroundColor: "rgba(13, 11, 13, 0)",
-  },
-  scroll: {
-    backgroundColor: "rgba(13, 11, 13, 1)",
-  },
-};
 
 interface IHeaderProps {
   setIsDarkTheme: React.Dispatch<React.SetStateAction<boolean>>;
@@ -91,24 +83,11 @@ function Header({ setIsDarkTheme }: IHeaderProps) {
   const comingSoonMatch = useMatch("/coming-soon");
   const nowPlayingMatch = useMatch("/now-playing");
 
-  const { scrollY } = useScroll();
-  const navAnimation = useAnimation();
-
   const isDark = useContext(IsDarkThemeContext);
   const onThemeBtn = () => setIsDarkTheme((prev) => !prev);
 
-  useEffect(() => {
-    scrollY.on("change", (latest) => {
-      if (scrollY.get() > 80) {
-        navAnimation.start("scroll");
-      } else {
-        navAnimation.start("top");
-      }
-    });
-  }, [scrollY, navAnimation]);
-
   return (
-    <Nav variants={navVariants} animate={navAnimation} initial="top">
+    <Nav>
       <Menus>
         <Menu>
           <Link to="/">
