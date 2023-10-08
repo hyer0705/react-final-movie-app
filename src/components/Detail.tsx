@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { IMovieDetail, getMovie, makeBgPath } from "../api";
 import { UNSELECTED_STATE } from "../common/constants";
-import { LoaderWrapper, LoadingSpinner } from "../common/common-components";
+import Loader from "./Loader";
 
 const DetailModal = styled(motion.div)`
   width: 70vh;
@@ -42,6 +42,7 @@ const DetailInfoWrapper = styled.div`
 `;
 
 const DetailTitle = styled.h3`
+  color: ${(props) => props.theme.textColor.accent};
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 12px;
@@ -114,9 +115,7 @@ function Detail({ movieId, setMovieId }: IDetailProps) {
       />
       <DetailModal layoutId={`movie-detail-${movieId}`}>
         {detailIsLoading ? (
-          <LoaderWrapper>
-            <LoadingSpinner />
-          </LoaderWrapper>
+          <Loader />
         ) : (
           movieDetail && (
             <>

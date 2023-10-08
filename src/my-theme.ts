@@ -10,13 +10,14 @@ const darkTheme: DefaultTheme = {
   textColor: {
     accent: "#CCCBD2",
     normal: "#FEFEFE",
+    lighter: "#FEFEFE",
   },
-  loadingColor: "#fff", // 추후 변경 필요
+  loadingColor: "#FFFFFF",
 };
 
 const lightTheme: DefaultTheme = {
   bgColor: {
-    modal: "#FCFAFE", // 해당 컬러는 좀 더 생각해보기로
+    modal: "#FCFAFE",
     normal: "#FFFFFF",
     circle: "#CE085B",
     button: "#7f42f1",
@@ -24,8 +25,9 @@ const lightTheme: DefaultTheme = {
   textColor: {
     accent: "#535353",
     normal: "#262626",
+    lighter: "#FEFEFE",
   },
-  loadingColor: "#000",
+  loadingColor: "#1C1727",
 };
 
 export { darkTheme, lightTheme };

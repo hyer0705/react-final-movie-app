@@ -12,6 +12,7 @@ declare module "styled-components" {
     textColor: {
       accent: string;
       normal: string;
+      lighter: string;
     };
     loadingColor: string;
   }
