@@ -2,7 +2,7 @@
 
 ## 프로젝트 소개
 
-리액트를 사용하여 API를 통해 영화 목록 및 상세 정보를 조회하는 웹 앱
+리액트를 사용하여 API를 통해 영화 목록 및 상세 정보를 조회하는 웹 앱   
 Demo: https://hyer0705.github.io/react-final-movie-app
 
 ## 메인 화면
