@@ -22,18 +22,22 @@
   "devDependencies": {
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "gh-pages": "^6.1.0",
     "typescript": "4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "homepage": "http://hyer0705.github.io/react-final-movie-app"
 }

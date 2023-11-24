@@ -1,15 +1,20 @@
 # react-final-movie-app
 
 ## 프로젝트 소개
+
 리액트를 사용하여 API를 통해 영화 목록 및 상세 정보를 조회하는 웹 앱
+Demo: https://hyer0705.github.io/react-final-movie-app
 
 ## 메인 화면
+
 ![image](https://github.com/hyer0705/react-final-movie-app/assets/50125734/531e685a-57a6-4152-bc5a-5f7022d78724)
 
 ## 기술스택
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"> <img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> 
+
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"> <img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
 ## 아쉬운 점
+
 - React Context API를 사용하여 상태를 관리해보려고 했는데 지금 내가 사용한 상태가 맞는지 불확실하다.
 - React Context API를 상태 관리하기에 적합한지 제대로 알지 못했다.
 - 상태 관리 라이브러리는 왜 나오게 된 것이고 많은 상태 관리 라이브러리가 있는데 각각의 라이브러리의 장단점을 파악하여 앞으로 프로젝트에서 어떤 라이브러리를 선택하는게 좋을지 정리를 해두면 좋을 것 같다.
